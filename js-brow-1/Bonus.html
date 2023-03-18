@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Palíndromo</title>
+  </head>
+  <body>
+    <label for="texto">Ingresa una palabra o frase:</label>
+    <input type="text" id="texto">
+    <button id="boton">Verificar</button>
+    <p id="resultado"></p>
+
+    <script>
+      const input = document.querySelector("#texto");
+      const boton = document.querySelector("#boton");
+      const resultado = document.querySelector("#resultado");
+
+      function esPalindromo(palabra) {
+        const palabraReversa = palabra.split("").reverse().join("");
+        return palabra === palabraReversa;
+      }
+
+      boton.addEventListener("click", () => {
+        const texto = input.value;
+        if (esPalindromo(texto)) {
+          resultado.textContent = `${texto} es un palíndromo`;
+        } else {
+          resultado.textContent = `${texto} no es un palíndromo`;
+        }
+      });
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
