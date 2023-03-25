@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Storage</title>
+</head>
+<body>
+  <form>
+    <label for="name">Ingresa tu nombre</label>
+    <input type="text" id="name" name="name" placeholder="Ingresa tu nombre">
+    <button type="submit">Guardar</button>
+  </form>
+  <section>
+    <p></p>
+    <button id="delete-name">Borrar nombre</button>
+  </section>
+
+  <script>
+  
+    const form = document.querySelector('form');
+    const input = document.querySelector('input');
+    const section = document.querySelector('section');
+    const parrafo = document.querySelector('p');
+    const deleteNameBtn = document.querySelector('#delete-name');
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const nombre = input.value;
+      localStorage.setItem("nombre", nombre);
+      showName();
+    });
+
+  
+    function showName() {
+      const nombreGuardado = localStorage.getItem("nombre");
+
+      if (nombreGuardado) {
+        parrafo.textContent = "Tu nombre es: " + nombreGuardado;
+      } else {
+        parrafo.textContent = "No hay datos";
+      }
+    }
+
+    function deleteName() {
+      localStorage.removeItem("nombre");
+      showName();
+    }
+
+ 
+    deleteNameBtn.addEventListener('click', deleteName);
+
+    showName();
+  </script>
+</body>
+</html>
